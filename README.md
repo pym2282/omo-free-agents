@@ -1,8 +1,47 @@
-# OMO Hybrid Agent Setup
+# OMO Hybrid Agent Setup v2.0.0
 
 [oh-my-openagent (OMO)](https://github.com/code-yeongyu/oh-my-openagent) 플러그인을 위한 무료 하이브리드 에이전트 설정입니다.
 
 **NVIDIA NIM** (무제한 무료) + **OpenCode Zen** (무료 모델) + **Google AI Studio** (무료 티어) 세 플랫폼을 조합해 유료 구독 없이 최고 수준의 에이전트 팀을 구성합니다.
+
+---
+
+## 🆕 변경 히스토리
+
+### v2.0.0 (2026-04-12)
+
+**주요 변경사항:**
+
+#### ⚠️ 변경된 에이전트 (5개)
+
+| 에이전트 | 이전 모델 | 새 모델 | 변경 이유 |
+|---------|----------|--------|----------|
+| metis | nvidia/moonshotai/kimi-k2.5 | nvidia/qwen/qwen3-next-80b | 추론 특화 |
+| momus | opencode/big-pickle | opencode/minimax-m2.5-free | rate limit 회피 |
+| explore | nvidia/meta/llama-4-scout | opencode/gpt-5-nano | NVIDIA 부하 분산 |
+| librarian | opencode/big-pickle | opencode/gpt-5-nano | rate limit 회피 |
+| multimodal-looker | google/gemini-3-flash | google/gemini-2.5-flash | 안정적 최신 버전 |
+
+#### ➕ 추가된 에이전트 (1개)
+
+- **plan**: opencode/minimax-m2.5-free (계획 수립용)
+
+#### ❌ 제거된 모델
+
+- **big-pickle**: rate limit 이슈 (10시간 대기)로 완전 제외
+
+#### 📊 플랫폼 사용량 변화
+
+| 플랫폼 | v1.x | v2.0 | 변화 |
+|--------|------|------|------|
+| NVIDIA | 8개 | 6개 | -2 |
+| Zen | 4개 | 6개 | +2 |
+| Google | 1개 | 1개 | 동일 |
+
+### v1.0.0 (2026-04-10)
+
+- 초기 버전
+- NVIDIA NIM 중심 구성
 
 ---
 
@@ -13,17 +52,17 @@
 | **sisyphus** | 메인 오케스트레이터 | Kimi K2.5 | NVIDIA |
 | **sisyphus-junior** | 경량 오케스트레이터 | GPT-5 Nano | Zen (무료) |
 | **hephaestus** | 심층 코딩 | Qwen3 Coder 480B | NVIDIA |
-| **atlas** | 실행/빌드 | MiniMax M2.5 | Zen (무료) |
+| **atlas** | 실행/빌드 | MiniMax M2.5 Free | Zen (무료) |
 | **build** | 빌드 전문 | Devstral 2 123B | NVIDIA |
 | **OpenCode-Builder** | 빌드 전문 | Devstral 2 123B | NVIDIA |
 | **prometheus** | 계획 추론 | Qwen3-Next 80B Thinking | NVIDIA |
-| **metis** | 계획 분석 | Kimi K2.5 | NVIDIA |
-| **momus** | 계획 검토 | Big Pickle | Zen (무료) |
+| **metis** | 계획 분석 | Qwen3-Next 80B Thinking | NVIDIA |
+| **momus** | 계획 검토 | MiniMax M2.5 Free | Zen (무료) |
 | **oracle** | 아키텍처/디버깅 | Qwen3-Next 80B Thinking | NVIDIA |
-| **plan** | 태스크 그래프 | Kimi K2.5 | NVIDIA |
-| **explore** | 코드 탐색 (10M ctx) | Llama 4 Scout | NVIDIA |
-| **librarian** | 문서 검색 | Big Pickle | Zen (무료) |
-| **multimodal-looker** | 이미지/스크린샷 분석 | Gemini 3 Flash | Google |
+| **plan** | 태스크 그래프 | MiniMax M2.5 Free | Zen (무료) |
+| **explore** | 코드 탐색 | GPT-5 Nano | Zen (무료) |
+| **librarian** | 문서 검색 | GPT-5 Nano | Zen (무료) |
+| **multimodal-looker** | 이미지/스크린샷 분석 | Gemini 2.5 Flash | Google |
 
 ---
 
@@ -127,20 +166,30 @@ OpenCode를 재시작하면 적용됩니다.
 |--------|-----|----------|------|
 | NVIDIA NIM | 40 | **없음** | 가장 넉넉함 |
 | Google AI Studio | 15 | 1,500 req | multimodal-looker 전용 |
-| OpenCode Zen 무료 | - | - | Big Pickle, MiniMax M2.5, GPT-5 Nano |
+| OpenCode Zen 무료 | - | - | MiniMax M2.5, GPT-5 Nano |
 
 일반적인 코딩 작업에서는 한도에 걸리지 않습니다.
 
 ---
 
+## ⚠️ 주의사항
+
+| 모델 | 잠재적 문제 | 대책 |
+|------|-------------|------|
+| opencode/gpt-5-nano | TUI 선택 불가 | CLI로 직접 지정 |
+| opencode/minimax-m2.5-free | quota 초과 가능 | NVIDIA 버전으로 수동 전환 |
+| big-pickle | ❌ 사용 안함 | rate limit 이슈로 완전 제외 |
+
+---
+
 ## Zen 무료 모델 목록 (2026년 4월 기준)
 
-OpenCode Zen에서 무료로 제공되는 모델입니다. 무료 기간이 종료될 수 있습니다.
+OpenCode Zen에서 무료로 제공되는 모델입니다.
 
-- `opencode/big-pickle`
 - `opencode/minimax-m2.5-free`
 - `opencode/mimo-v2-pro-free`
 - `opencode/mimo-v2-omni-free`
-- `opencode/qwen3.6-plus-free` *(현재 일부 환경에서 오류 발생)*
 - `opencode/nemotron-3-super-free`
 - `opencode/gpt-5-nano`
+
+> **참고:** `opencode/big-pickle`은 rate limit 이슈로 사용하지 않습니다.

@@ -1,92 +1,79 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "_version": "2.0.0",
+  "_last_updated": "2026-04-12",
+  "_description": "Hybrid NVIDIA + Zen free agent configuration. Optimized for load balancing between NVIDIA NIM (40 RPM) and OpenCode Zen.",
 
   "agents": {
-
     "sisyphus": {
       "model": "nvidia/moonshotai/kimi-k2.5",
       "reasoningEffort": "high"
     },
-
     "sisyphus-junior": {
       "model": "opencode/gpt-5-nano"
     },
-
     "hephaestus": {
       "model": "nvidia/qwen/qwen3-coder-480b-a35b-instruct"
     },
-
     "atlas": {
       "model": "opencode/minimax-m2.5-free"
     },
-
     "build": {
       "model": "nvidia/mistralai/devstral-2-123b-instruct-2512"
     },
-
     "OpenCode-Builder": {
       "model": "nvidia/mistralai/devstral-2-123b-instruct-2512"
     },
-
     "prometheus": {
       "model": "nvidia/qwen/qwen3-next-80b-a3b-thinking",
       "reasoningEffort": "high"
     },
-
     "metis": {
-      "model": "nvidia/moonshotai/kimi-k2.5",
+      "model": "nvidia/qwen/qwen3-next-80b-a3b-thinking",
       "reasoningEffort": "high"
     },
-
     "momus": {
-      "model": "opencode/big-pickle",
+      "model": "opencode/minimax-m2.5-free",
       "reasoningEffort": "medium"
     },
-
     "oracle": {
       "model": "nvidia/qwen/qwen3-next-80b-a3b-thinking",
       "reasoningEffort": "high"
     },
-
     "plan": {
-      "model": "nvidia/moonshotai/kimi-k2.5",
+      "model": "opencode/minimax-m2.5-free",
       "reasoningEffort": "medium"
     },
-
     "explore": {
-      "model": "nvidia/meta/llama-4-scout-17b-16e-instruct"
+      "model": "opencode/gpt-5-nano"
     },
-
     "librarian": {
-      "model": "opencode/big-pickle"
+      "model": "opencode/gpt-5-nano"
     },
-
     "multimodal-looker": {
-      "model": "google/gemini-3-flash"
+      "model": "google/gemini-2.5-flash"
     }
-
   },
 
   "categories": {
-    "deep": {
-      "model": "nvidia/qwen/qwen3-coder-480b-a35b-instruct"
-    },
     "ultrabrain": {
       "model": "nvidia/qwen/qwen3-next-80b-a3b-thinking",
       "reasoningEffort": "high"
     },
+    "deep": {
+      "model": "nvidia/qwen/qwen3-coder-480b-a35b-instruct"
+    },
     "unspecified-high": {
-      "model": "nvidia/moonshotai/kimi-k2.5",
-      "reasoningEffort": "high"
+      "model": "nvidia/moonshotai/kimi-k2.5"
     },
     "visual-engineering": {
       "model": "opencode/minimax-m2.5-free"
     },
     "artistry": {
-      "model": "opencode/big-pickle"
+      "model": "nvidia/meta/llama-4-maverick-17b-128e-instruct"
     },
     "writing": {
-      "model": "nvidia/moonshotai/kimi-k2.5"
+      "model": "google/gemini-2.5-flash-lite"
     },
     "quick": {
       "model": "opencode/gpt-5-nano"
