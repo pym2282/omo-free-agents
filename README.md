@@ -28,7 +28,7 @@
 
 #### ❌ 제거된 모델
 
-- **big-pickle**: rate limit 이슈 (10시간 대기)로 완전 제외
+- **big-pickle**: 도구 사용 불안정으로 완전 제외
 
 #### 📊 플랫폼 사용량 변화
 
@@ -178,7 +178,23 @@ OpenCode를 재시작하면 적용됩니다.
 |------|-------------|------|
 | opencode/gpt-5-nano | TUI 선택 불가 | CLI로 직접 지정 |
 | opencode/minimax-m2.5-free | quota 초과 가능 | NVIDIA 버전으로 수동 전환 |
-| big-pickle | ❌ 사용 안함 | rate limit 이슈로 완전 제외 |
+| opencode/big-pickle | ❌ 사용 안함 | 도구 사용 불안정 |
+
+---
+
+## Zen 무료 모델 선별 방법
+
+**데이터 소스**: `https://models.dev/api.json`
+
+**선별 기준**:
+1. `cost.input === 0` (무료 모델만)
+2. `cost` 필드 존재 (로컬 실행형 제외)
+3. 제외 프로바이더: github-copilot, gitlab, ollama 등
+4. **실제 테스트**: AI 에이전트로 API 호출 및 도구 사용 검증 후 등록
+
+**제외된 모델**:
+- `big-pickle`: 도구 사용 불안정
+- `glm-4.7-free`, `minimax-m2.1-free`: 2026-03-15 deprecate 예정
 
 ---
 
@@ -192,4 +208,30 @@ OpenCode Zen에서 무료로 제공되는 모델입니다.
 - `opencode/nemotron-3-super-free`
 - `opencode/gpt-5-nano`
 
-> **참고:** `opencode/big-pickle`은 rate limit 이슈로 사용하지 않습니다.
+> **참고:** `opencode/big-pickle`은 도구 사용 불안정으로 사용하지 않습니다.
+
+---
+
+## 📋 모델별 특징 및 알려진 문제
+
+| 모델 | 특징 | 알려진 문제 | 권장 사용처 |
+|------|------|-------------|-------------|
+| opencode/kimi-k2.5-free | 도구 호출 안정적, 멀티모달 지원 | Markdown 표 생성 어려움 | 일반 작업, 도구 사용 |
+| opencode/llama-4-maverick | (이전 사용) | "~~하겠습니다"만 하고 실제 미실행 | ❌ 사용 안함 |
+| opencode/big-pickle | 스텔스 모델 | 도구 사용 불안정 | ❌ 사용 안함 |
+
+### 상세 설명
+
+**opencode/kimi-k2.5-free**
+- ✅ 도구 호출(task)이 실제로 실행됨
+- ✅ 멀티모달(이미지/비디오/PDF) 지원
+- ⚠️ 표(table) 생성 시 Markdown 형식 오류
+
+**opencode/llama-4-maverick (사용 중단)**
+- ❌ "하겠습니다" 등 의지 표현만 하고 실제 작업 미완료
+- ❌ 도구 호출 후 결과 미반환
+- → Kimi로 복귀
+
+**opencode/big-pickle (사용 중단)**
+- ❌ 도구 사용 불안정
+- ❌ 전반적인 신뢰성 이슈
