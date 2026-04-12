@@ -31,7 +31,7 @@
 
 - [OpenCode](https://opencode.ai) 설치
 - [oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent) 플러그인 설치
-- **NVIDIA NIM API 키** (무료)
+- **NVIDIA NIM 계정** (무료)
 - **Google AI Studio API 키** (무료)
 - OpenCode Zen 구독 (무료 모델만 사용하므로 결제 불필요)
 
@@ -47,7 +47,7 @@ NVIDIA NIM 무료 티어: **40 req/min, 일일 상한 없음**
 2. 우측 상단 **Sign In** → NVIDIA 계정으로 로그인 (없으면 무료 가입)
 3. 우측 상단 프로필 → **API Keys**
 4. **Generate API Key** 클릭
-5. 키를 복사해 안전하게 보관
+5. 키 복사 (`nvapi-...` 형태)
 
 ### 2. Google AI Studio API 키
 
@@ -57,31 +57,31 @@ Google AI Studio 무료 티어: **15 req/min, 일 1,500 req**
 2. Google 계정으로 로그인
 3. 좌측 메뉴 **Get API key** 클릭
 4. **Create API key** → 프로젝트 선택 후 생성
-5. 키를 복사해 안전하게 보관
+5. 키 복사 (`AIza...` 형태)
 
 ---
 
 ## OpenCode 설정
 
-OpenCode 설정 파일(`~/.config/opencode/config.json`)에 API 키를 등록합니다.
+API 키는 OpenCode TUI에서 `/connect` 명령으로 등록합니다. 등록된 키는 `~/.local/share/opencode/auth.json`에 자동 저장됩니다.
 
-```json
-{
-  "providers": {
-    "nvidia": {
-      "apiKey": "nvapi-여기에_NVIDIA_키_입력",
-      "baseURL": "https://integrate.api.nvidia.com/v1"
-    },
-    "google": {
-      "apiKey": "여기에_GOOGLE_키_입력"
-    }
-  }
-}
+### NVIDIA 등록
+
+```
+/connect → nvidia 선택 → API 키 붙여넣기
 ```
 
-> OpenCode config 위치:
-> - Windows: `C:\Users\사용자명\.config\opencode\config.json`
-> - macOS/Linux: `~/.config/opencode/config.json`
+### Google 등록
+
+```
+/connect → google 선택 → API 키 붙여넣기
+```
+
+### OpenCode Zen 등록
+
+```
+/connect → opencode 선택 → opencode.ai에서 로그인
+```
 
 ---
 
