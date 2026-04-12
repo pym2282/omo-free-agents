@@ -1,0 +1,98 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+
+  "agents": {
+
+    "sisyphus": {
+      "model": "nvidia/moonshotai/kimi-k2.5",
+      "reasoningEffort": "high"
+    },
+
+    "sisyphus-junior": {
+      "model": "opencode/gpt-5-nano"
+    },
+
+    "hephaestus": {
+      "model": "nvidia/qwen/qwen3-coder-480b-a35b-instruct"
+    },
+
+    "atlas": {
+      "model": "opencode/minimax-m2.5-free"
+    },
+
+    "build": {
+      "model": "nvidia/mistralai/devstral-2-123b-instruct-2512"
+    },
+
+    "OpenCode-Builder": {
+      "model": "nvidia/mistralai/devstral-2-123b-instruct-2512"
+    },
+
+    "prometheus": {
+      "model": "nvidia/qwen/qwen3-next-80b-a3b-thinking",
+      "reasoningEffort": "high"
+    },
+
+    "metis": {
+      "model": "nvidia/moonshotai/kimi-k2.5",
+      "reasoningEffort": "high"
+    },
+
+    "momus": {
+      "model": "opencode/big-pickle",
+      "reasoningEffort": "medium"
+    },
+
+    "oracle": {
+      "model": "nvidia/qwen/qwen3-next-80b-a3b-thinking",
+      "reasoningEffort": "high"
+    },
+
+    "plan": {
+      "model": "nvidia/moonshotai/kimi-k2.5",
+      "reasoningEffort": "medium"
+    },
+
+    "explore": {
+      "model": "nvidia/meta/llama-4-scout-17b-16e-instruct"
+    },
+
+    "librarian": {
+      "model": "opencode/big-pickle"
+    },
+
+    "multimodal-looker": {
+      "model": "google/gemini-3-flash"
+    }
+
+  },
+
+  "categories": {
+    "deep": {
+      "model": "nvidia/qwen/qwen3-coder-480b-a35b-instruct"
+    },
+    "ultrabrain": {
+      "model": "nvidia/qwen/qwen3-next-80b-a3b-thinking",
+      "reasoningEffort": "high"
+    },
+    "unspecified-high": {
+      "model": "nvidia/moonshotai/kimi-k2.5",
+      "reasoningEffort": "high"
+    },
+    "visual-engineering": {
+      "model": "opencode/minimax-m2.5-free"
+    },
+    "artistry": {
+      "model": "opencode/big-pickle"
+    },
+    "writing": {
+      "model": "nvidia/moonshotai/kimi-k2.5"
+    },
+    "quick": {
+      "model": "opencode/gpt-5-nano"
+    },
+    "unspecified-low": {
+      "model": "opencode/gpt-5-nano"
+    }
+  }
+}
