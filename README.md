@@ -37,64 +37,82 @@
 
 ---
 
-## API 키 발급
+## Step 1 — API 키 발급
 
-### 1. NVIDIA NIM API 키
+### NVIDIA NIM API 키
 
-NVIDIA NIM 무료 티어: **40 req/min, 일일 상한 없음**
+무료 티어: **40 req/min, 일일 상한 없음**
 
 1. [build.nvidia.com](https://build.nvidia.com) 접속
 2. 우측 상단 **Sign In** → NVIDIA 계정으로 로그인 (없으면 무료 가입)
 3. 우측 상단 프로필 → **API Keys**
 4. **Generate API Key** 클릭
-5. 키 복사 (`nvapi-...` 형태)
+5. `nvapi-...` 형태의 키 복사
 
-### 2. Google AI Studio API 키
+### Google AI Studio API 키
 
-Google AI Studio 무료 티어: **15 req/min, 일 1,500 req**
+무료 티어: **15 req/min, 일 1,500 req**
 
 1. [aistudio.google.com](https://aistudio.google.com) 접속
 2. Google 계정으로 로그인
 3. 좌측 메뉴 **Get API key** 클릭
 4. **Create API key** → 프로젝트 선택 후 생성
-5. 키 복사 (`AIza...` 형태)
+5. `AIza...` 형태의 키 복사
 
 ---
 
-## OpenCode 설정
+## Step 2 — OpenCode에 API 키 등록
 
-API 키는 OpenCode TUI에서 `/connect` 명령으로 등록합니다. 등록된 키는 `~/.local/share/opencode/auth.json`에 자동 저장됩니다.
+TUI 없이 **CLI 명령어**로 등록합니다. cmd, PowerShell 모두 동작합니다.
 
-### NVIDIA 등록
+```bash
+# NVIDIA 키 등록
+opencode providers login --provider nvidia
 
+# Google 키 등록
+opencode providers login --provider google
+
+# OpenCode Zen 등록 (브라우저 인증)
+opencode providers login --provider opencode
 ```
-/connect → nvidia 선택 → API 키 붙여넣기
+
+각 명령 실행 후 API 키 입력 프롬프트가 뜨면 **우클릭**으로 붙여넣기합니다.
+
+등록된 키는 `~/.local/share/opencode/auth.json`에 자동 저장됩니다.
+
+> **Windows 경로:**
+> `C:\Users\사용자명\.local\share\opencode\auth.json`
+
+---
+
+## Step 3 — OMO 플러그인 설치
+
+```bash
+opencode plugins install oh-my-openagent@latest
 ```
 
-### Google 등록
+또는 `~/.config/opencode/opencode.json`에 직접 추가:
 
-```
-/connect → google 선택 → API 키 붙여넣기
-```
-
-### OpenCode Zen 등록
-
-```
-/connect → opencode 선택 → opencode.ai에서 로그인
+```json
+{
+  "plugin": [
+    "oh-my-openagent@latest"
+  ]
+}
 ```
 
 ---
 
-## OMO 에이전트 설정 적용
+## Step 4 — 에이전트 설정 적용
 
-`oh-my-openagent.json` 파일을 OpenCode 설정 폴더에 복사합니다.
+`oh-my-openagent.json`을 OpenCode 설정 폴더에 복사합니다.
 
-**Windows:**
+**Windows (cmd):**
 ```
 copy oh-my-openagent.json %USERPROFILE%\.config\opencode\oh-my-openagent.json
 ```
 
-**macOS/Linux:**
+**macOS / Linux:**
 ```
 cp oh-my-openagent.json ~/.config/opencode/oh-my-openagent.json
 ```
